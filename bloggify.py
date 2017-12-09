@@ -34,7 +34,7 @@ for line in k:
 k.seek(0)
 
 if length < 180:
-	readtime = str(length//3) + "s"
+	readtime = str(max(5, length//3)) + "s"
 else:
 	length = length//50 * 50
 	readtime = str(max(1, length//200 + (((length % 200)//90) * .5))) + "m"
@@ -135,8 +135,10 @@ escri()
 colors = {"r":"rojo", "g":"verde", "b":"azul", "y":"amarillo"}
 c = colors[myin("What color should this be?")]
 
-ze = "0"*(8 - len(binnum)) + binnum
-ze = ze.replace("0", "<div class='ze'>0</div>")
+pad = 8 - len(binnum)
+ze = binnum.replace("0", "<div class='ze'>0</div>")
+if pad > 0:
+	ze = "<div class='ze'>" + "0"*pad + "</div>" + ze
 
 print("Add the following to index.html:\n")
 print("<div class='blogitem " + c + "'>")
