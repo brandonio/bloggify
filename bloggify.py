@@ -6,7 +6,7 @@ if len(sys.argv) == 1:
 	k = open("../../../blog.txt", "r")
 	skip = False
 else:
-	k = open("../../sites/blog/txt/" + sys.argv[1], "r")
+	k = open(sys.argv[1], "r")
 	skip = True
 
 def escri(s="", end="\n"):
@@ -152,6 +152,7 @@ for line in k:
 	else:
 		escri("\t\t" + line, "")
 		first = True
+
 if not skip:
 	k.seek(0)
 	newfile = open("../../sites/blog/txt/" + binnum + ".txt", "w")
