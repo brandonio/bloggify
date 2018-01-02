@@ -6,7 +6,9 @@ if len(sys.argv) == 1:
 	k = open("../../../blog.txt", "r")
 	skip = False
 else:
-	k = open(sys.argv[1], "r")
+	k = open("../../sites/blog/txt/" + sys.argv[1], "r")
+	# k = open(sys.argv[1], "r")
+	# use this if u can get the bash script working
 	skip = True
 
 def escri(s="", end="\n"):
