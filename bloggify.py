@@ -88,7 +88,7 @@ nextpost = str(bin(int(decnum) + 1))[2:]
 if len(nextpost) == 1:
 	nextpost = "0" + nextpost
 
-f = open("../../sites/blog/" + binnum, "w")
+f = open("../../sites/blog/" + binnum + ".html", "w")
 
 escri("<!DOCTYPE html>")
 escri("<html>")
