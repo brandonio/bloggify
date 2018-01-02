@@ -119,8 +119,8 @@ comment("\t<div id='egg'>\n\t\tinsert easter egg here\n\t</div>")
 escri()
 
 if int(decnum) > 0:
-	escri("\t<a id='prev' href='http://brandonb.me/blog/" + prevpost + "'></a>")
-	escri("\t<a id='iprev' href='http://brandonb.me/blog/" + prevpost + "'></a>")
+	escri("\t<a id='prev' href='http://brandonb.me/blog/" + prevpost + ".html'></a>")
+	escri("\t<a id='iprev' href='http://brandonb.me/blog/" + prevpost + ".html'></a>")
 	escri()
 
 escri("\t<div id='story'>")
@@ -169,8 +169,8 @@ escri("\n\t</div>")
 escri("</body>")
 escri()
 
-escri("\t<a id='next' href='http://brandonb.me/blog/" + nextpost + "'></a>")
-escri("\t<a id='inext' href='http://brandonb.me/blog/" + nextpost + "'></a>")
+escri("\t<a id='next' href='http://brandonb.me/blog/" + nextpost + ".html'></a>")
+escri("\t<a id='inext' href='http://brandonb.me/blog/" + nextpost + ".html'></a>")
 escri()
 
 escri("<script src='http://code.jquery.com/jquery-1.11.3.min.js'></script>")
@@ -194,9 +194,9 @@ if len(og) < 10:
 print("\n\t\t<div class='blogitem " + c + snum + "'>")
 
 if snum:
-	print("\t\t\t<a class='num snum' href='http://brandonb.me/blog/" + binnum + "'>" + ze + "</a>")
-	print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + "'>" + og + "</a>")
+	print("\t\t\t<a class='num snum' href='http://brandonb.me/blog/" + binnum + ".html'>" + ze + "</a>")
+	print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + ".html'>" + og + "</a>")
 else:
-	print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + "'>" + og + "</a>")
-	print("\t\t\t<a class='num' href='http://brandonb.me/blog/" + binnum + "'>" + ze + "</a>")
+	print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + ".html'>" + og + "</a>")
+	print("\t\t\t<a class='num' href='http://brandonb.me/blog/" + binnum + ".html'>" + ze + "</a>")
 print("\t\t</div>")
