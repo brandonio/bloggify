@@ -135,6 +135,7 @@ escri()
 
 flag = False
 first = False
+nolim = False
 
 for line in k:
 	line = line.strip()
@@ -143,9 +144,12 @@ for line in k:
 			escri("<br><br>\n")
 			escri("\t\t<b>" + line + "</b>", "")
 			flag = True
+			if "nolim" in line:
+				nolim = True
 		elif line:
 			if flag:
-				escri("<br>")
+				if not nolim:
+					escri("<br>")
 			else:
 				escri("<br><br>\n")
 			escri("\t\t" + line, "")
