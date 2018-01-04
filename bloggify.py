@@ -6,9 +6,13 @@ if len(sys.argv) == 1:
 	k = open("../../../blog.txt", "r")
 	skip = False
 else:
-	k = open("../../sites/blog/txt/" + sys.argv[1], "r")
-	# k = open(sys.argv[1], "r")
-	# use this if u can get the bash script working
+	try:
+		k = open("../../sites/blog/txt/" + sys.argv[1], "r")
+	except:
+		try:
+			k = open(sys.argv[1], "r")
+		except:
+			print("ERROR")
 	skip = True
 
 def escri(s="", end="\n"):
@@ -97,6 +101,7 @@ escri("<html>")
 escri("<head>")
 escri("\t<title>" + og + "</title>")
 escri("\t<meta charset='utf-8'>")
+escri("\t<meta name='viewport' content='width=device-width,initial-scale=1.0'>")
 escri("\t<link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet'>")
 escri("\t<link href='https://fonts.googleapis.com/css?family=Montserrat:300,400,700' rel='stylesheet'>")
 escri("\t<link rel='stylesheet' href='./assets/css/style.css'>")
@@ -189,21 +194,22 @@ escri()
 
 f.close()
 
-pad = 8 - len(binnum)
-ze = binnum.replace("0", "<div class='ze'>0</div>")
-if pad > 0:
-	ze = "<div class='ze'>" + "0"*pad + "</div>" + ze
+if not skip:
+	pad = 8 - len(binnum)
+	ze = binnum.replace("0", "<div class='ze'>0</div>")
+	if pad > 0:
+		ze = "<div class='ze'>" + "0"*pad + "</div>" + ze
 
-snum = ""
-if len(og) < 10:
-	snum = " sbi"
+	snum = ""
+	if len(og) < 10:
+		snum = " sbi"
 
-print("\n\t\t<div class='blogitem " + c + snum + "'>")
+	print("\n\t\t<div class='blogitem " + c + snum + "'>")
 
-if snum:
-	print("\t\t\t<a class='num snum' href='http://brandonb.me/blog/" + binnum + ".html'>" + ze + "</a>")
-	print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + ".html'>" + og + "</a>")
-else:
-	print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + ".html'>" + og + "</a>")
-	print("\t\t\t<a class='num' href='http://brandonb.me/blog/" + binnum + ".html'>" + ze + "</a>")
-print("\t\t</div>")
+	if snum:
+		print("\t\t\t<a class='num snum' href='http://brandonb.me/blog/" + binnum + ".html'>" + ze + "</a>")
+		print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + ".html'>" + og + "</a>")
+	else:
+		print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + ".html'>" + og + "</a>")
+		print("\t\t\t<a class='num' href='http://brandonb.me/blog/" + binnum + ".html'>" + ze + "</a>")
+	print("\t\t</div>")
