@@ -200,16 +200,7 @@ if not skip:
 	if pad > 0:
 		ze = "<div class='ze'>" + "0"*pad + "</div>" + ze
 
-	snum = ""
-	if len(og) < 10:
-		snum = " sbi"
-
-	print("\n\t\t<div class='blogitem " + c + snum + "'>")
-
-	if snum:
-		print("\t\t\t<a class='num snum' href='http://brandonb.me/blog/" + binnum + ".html'>" + ze + "</a>")
-		print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + ".html'>" + og + "</a>")
-	else:
-		print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + ".html'>" + og + "</a>")
-		print("\t\t\t<a class='num' href='http://brandonb.me/blog/" + binnum + ".html'>" + ze + "</a>")
+	print("\n\t\t<div class='blogitem " + c + "'>")
+	print("\t\t\t<a class='num' href='http://brandonb.me/blog/" + binnum + ".html'>" + ze + "</a>")
+	print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + ".html'>" + og + "</a>")
 	print("\t\t</div>")
