@@ -168,8 +168,10 @@ for line in k:
 			else:
 				escri("<br><br>\n")
 			escri("\t\t" + line, "")
+			nolim = False
 		else:
 			flag = False
+			nolim = False
 	else:
 		escri("\t\t" + line, "")
 		first = True
