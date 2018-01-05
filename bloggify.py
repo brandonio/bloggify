@@ -33,7 +33,7 @@ def eggify(s):
 
 colors = {"r":"rojo", "g":"verde", "b":"azul", "y":"amarillo"}
 
-decnum, title, col, rooz = k.readline().strip(), k.readline().strip(), k.readline().strip(), k.readline().strip()
+decnum, title, col, rooz, egg = k.readline().strip(), k.readline().strip(), k.readline().strip(), k.readline().strip(), k.readline().strip()
 
 binnum = str(bin(int(decnum)))[2:]
 if len(binnum) == 1:
@@ -45,10 +45,15 @@ if len(hexnum) == 1:
 og = str(title)
 title = eggify(title)
 
-c = colors[col]
+rang = True
+if col == "x":
+	c = colors.popitem()[1]
+	rang = False
+else:
+	c = colors[col]
 
 less = True
-if not rooz:
+if rooz == "x":
 	less = False
 	dt = date.today()
 	month = str(dt.month)
@@ -58,6 +63,9 @@ if not rooz:
 	if len(day) == 1:
 		day = "0" + day
 	rooz = month + "." + day + "." + str(dt.year)[2:]
+
+if egg == "x":
+	egg = False
 
 length = 0
 count = 0
@@ -70,8 +78,8 @@ k.readline()
 k.readline()
 k.readline()
 k.readline()
-if less:
-	k.readline()
+k.readline()
+k.readline()
 
 if length < 180:
 	readtime = str(max(5, length//3)) + "s"
@@ -106,7 +114,6 @@ escri("\t<link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='style
 escri("\t<link href='https://fonts.googleapis.com/css?family=Montserrat:300,400,700' rel='stylesheet'>")
 escri("\t<link rel='stylesheet' href='./assets/css/style.css'>")
 escri("\t<link rel='shortcut icon' type='image/png' href='./assets/img/favicon.png'/>")
-# escri("\t<link href='https://afeld.github.io/emoji-css/emoji.css' rel='stylesheet'>")
 escri("</head>")
 escri()
 
@@ -122,7 +129,10 @@ escri("\t\t<div class='tbitem' id='title'>" + title + "</div>")
 escri("\t</div>")
 escri()
 
-comment("\t<div id='egg'>\n\t\tinsert easter egg here\n\t</div>")
+if not egg:
+	comment("\t<div id='egg'>\n\t\tinsert easter egg here\n\t</div>")
+else:
+	escri("\t<div id='egg'>\n\t\t" + egg + "\n\t</div>")
 escri()
 
 if int(decnum) > 0:
@@ -169,10 +179,14 @@ if not skip:
 	newfile = open("../../sites/blog/txt/" + binnum + ".txt", "w")
 	count = 0
 	for line in k:
-		if not less and count == 3:
+		if not rang and count == 2:
+			newfile.write(c)
+			newfile.write("\n")
+		elif not less and count == 3:
 			newfile.write(rooz)
 			newfile.write("\n")
-		newfile.write(line)
+		else:
+			newfile.write(line)
 		count += 1
 	newfile.close()
 k.close()
