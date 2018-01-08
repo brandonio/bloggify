@@ -199,11 +199,11 @@ for line in towrite:
 newfile.close()
 
 escri("\n\t</div>")
-escri("</body>")
 escri()
 
 escri("\t<a id='next' href='http://brandonb.me/blog/" + nextpost + ".html'></a>")
 escri("\t<a id='inext' href='http://brandonb.me/blog/" + nextpost + ".html'></a>")
+escri("</body>")
 escri()
 
 escri("<script src='http://code.jquery.com/jquery-1.11.3.min.js'></script>")
