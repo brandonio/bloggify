@@ -2,18 +2,20 @@ from datetime import date
 import calendar
 import sys
 
+skip = False
 if len(sys.argv) == 1:
 	k = open("../../../blog.txt", "r")
-	skip = False
 else:
+	skip = True
 	try:
 		k = open("../../sites/blog/txt/" + sys.argv[1], "r")
+
 	except:
 		try:
 			k = open(sys.argv[1], "r")
+	
 		except:
 			print("ERROR")
-	skip = True
 
 def escri(s="", end="\n"):
 	f.write(s + end)
@@ -175,23 +177,26 @@ for line in k:
 	else:
 		escri("\t\t" + line, "")
 		first = True
+k.seek(0)
 
-if not skip:
-	k.seek(0)
-	newfile = open("../../sites/blog/txt/" + binnum + ".txt", "w")
-	count = 0
-	for line in k:
-		if not rang and count == 2:
-			newfile.write(c)
-			newfile.write("\n")
-		elif not less and count == 3:
-			newfile.write(rooz)
-			newfile.write("\n")
-		else:
-			newfile.write(line)
-		count += 1
-	newfile.close()
+count = 0
+towrite = []
+for line in k:
+	if not rang and count == 2:
+		towrite.append(c)
+		towrite.append("\n")
+	elif not less and count == 3:
+		towrite.append(rooz)
+		towrite.append("\n")
+	else:
+		towrite.append(line)
+	count += 1
 k.close()
+
+newfile = open("../../sites/blog/txt/" + binnum + ".txt", "w")
+for line in towrite:
+	newfile.write(line)
+newfile.close()
 
 escri("\n\t</div>")
 escri("</body>")
