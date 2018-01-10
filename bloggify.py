@@ -148,28 +148,49 @@ escri("\t\t\t<div class='infoitem'>" + rooz + "</div>")
 escri("\t\t\t<div class='infoitem'>" + length + "</div>")
 escri("\t\t\t<div class='infoitem'>" + readtime + "</div>")
 escri("\t\t</div>")
-escri()
 
 flag = False
 first = False
 nolim = False
+pre = False
+after = False
 
 for line in k:
-	line = line.strip()
+	if "<pre>" in line:
+		pre = True
+	if "</pre>" in line:
+		pre = False
+		after = True
+	if not pre and not after:
+		line = line.strip()
 	if first:
-		if ":" in line and "." not in line:
+		if ":" in line and "." not in line and "nobold" not in line:
 			escri("<br><br>\n")
 			escri("\t\t<b>" + line + "</b>", "")
 			flag = True
 			if "nolim" in line:
 				nolim = True
 		elif line:
-			if flag:
-				if not nolim:
-					escri("<br>")
+			if "<pre>" in line:
+				escri()
+				escri(line, "")
+			elif not pre and not after:
+				if flag:
+					if not nolim:
+						escri("<br>")
+					escri()
+				else:
+					escri("<br><br>\n")
+				if "nobold" in line:
+					escri("\t\t" + line[8:])
+				else:
+					escri("\t\t" + line, "")
 			else:
-				escri("<br><br>\n")
-			escri("\t\t" + line, "")
+				after = False
+				if "</pre>" in line:
+					escri(line[:len(line)-1], "")
+				else:
+					escri(line, "")
 			nolim = False
 		else:
 			flag = False
@@ -211,17 +232,61 @@ escri("<script src='./assets/js/script.js'></script>")
 escri()
 
 escri("</html>")
-escri()
-
 f.close()
 
 if not skip:
+	fourohfour = open("../../sites/blog/404.html", "w")
+	fourohfour.write("<!DOCTYPE html>\n")
+	fourohfour.write("<html>\n")
+	fourohfour.write("<head>\n")
+	fourohfour.write("\t<title>brand0n b1ts</title>\n")
+	fourohfour.write("\t<meta charset='utf-8'>\n")
+	fourohfour.write("\t<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>\n")
+	fourohfour.write("\t<link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet'>\n")
+	fourohfour.write("\t<link rel='stylesheet' href='./assets/css/404.css'>\n")
+	fourohfour.write("\t<link rel='shortcut icon' type='image/png' href='./assets/img/favicon.png'/>\n")
+	fourohfour.write("</head>\n")
+	fourohfour.write("\n")
+	fourohfour.write("<body background='./assets/img/404.png'>\n")
+	fourohfour.write("\t<div id='title'>\n")
+	fourohfour.write("\t\t4<div class='turnoff'>0</div>4<div class='turnon'>!</div>\n")
+	fourohfour.write("\t</div>\n")
+	fourohfour.write("\n")
+	fourohfour.write("\t<a id='prev' href='http://brandonb.me/blog/" + binnum + ".html'></a>\n")
+	fourohfour.write("\t<a id='iprev' href='http://brandonb.me/blog/" + binnum + ".html'></a>\n")
+	fourohfour.write("\n")
+	fourohfour.write("\t<a id='next' href='http://brandonb.me/blog'></a>\n")
+	fourohfour.write("\t<a id='inext' href='http://brandonb.me/blog'></a>\n")
+	fourohfour.write("</body>\n")
+	fourohfour.write("\n")
+	fourohfour.write("<script src='http://code.jquery.com/jquery-1.11.3.min.js'></script>\n")
+	fourohfour.write("<script src='./assets/js/404.js'></script>\n")
+	fourohfour.write("\n")
+	fourohfour.write("</html>\n")
+	fourohfour.close()
+
 	pad = 8 - len(binnum)
 	ze = binnum.replace("0", "<div class='ze'>0</div>")
 	if pad > 0:
 		ze = "<div class='ze'>" + "0"*pad + "</div>" + ze
 
-	print("\n\t\t<div class='blogitem " + c + "'>")
-	print("\t\t\t<a class='num' href='http://brandonb.me/blog/" + binnum + ".html'>" + ze + "</a>")
-	print("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + ".html'>" + og + "</a>")
-	print("\t\t</div>")
+	count = 0
+	stop = 24 + 4*int(decnum)
+	towrite = []
+	index = open("../../sites/blog/index.html", "r")
+	for line in index:
+		if count != stop:
+			towrite.append(line)
+		else:
+			towrite.append("\t\t<div class='blogitem " + c + "'>\n")
+			towrite.append("\t\t\t<a class='num' href='http://brandonb.me/blog/" + binnum + ".html'>" + ze + "</a>\n")
+			towrite.append("\t\t\t<a class='name' href='http://brandonb.me/blog/" + binnum + ".html'>" + og + "</a>\n")
+			towrite.append("\t\t</div>\n")
+			towrite.append(line)
+		count += 1
+	index.close()
+
+	index = open("../../sites/blog/index.html", "w")
+	for line in towrite:
+		index.write(line)
+	index.close()
