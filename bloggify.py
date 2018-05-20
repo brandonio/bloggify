@@ -9,11 +9,9 @@ else:
 	skip = True
 	try:
 		k = open("../../sites/blog/txt/" + sys.argv[1], "r")
-
 	except:
 		try:
 			k = open(sys.argv[1], "r")
-	
 		except:
 			print("ERROR")
 
@@ -109,6 +107,13 @@ f = open("../../sites/blog/" + binnum + ".html", "w")
 escri("<!DOCTYPE html>")
 escri("<html>")
 escri("<head>")
+escri("\t<script async src='https://www.googletagmanager.com/gtag/js?id=UA-58315661-3'></script>")
+escri("\t<script>")
+escri("\t\twindow.dataLayer = window.dataLayer || [];")
+escri("\t\tfunction gtag(){dataLayer.push(arguments);}")
+escri("\t\tgtag('js', new Date());")
+escri("\t\tgtag('config', 'UA-58315661-3');")
+escri("\t</script>")
 escri("\t<title>" + og + "</title>")
 escri("\t<meta charset='utf-8'>")
 escri("\t<meta name='viewport' content='width=device-width,initial-scale=1.0'>")
@@ -123,9 +128,7 @@ escri("<body>")
 escri("\t<div id='topbar'>")
 escri("\t\t<div id='topcontent'>")
 escri("\t\t\t<div class='tbitem' id='shortname'><a class='homelink' href='http://brandonb.me/blog'>bb</a></div>")
-escri("\t\t\t<div class='tbitem' id='longname'>")
-escri("\t\t\t\t<a class='homelink' href='http://brandonb.me/blog'>brand</a><div class='turnoff'>0</div><a class='homelink' href='http://brandonb.me/blog'>n</a> <a class='homelink' href='http://brandonb.me/blog'>b</a><div class='turnon'>1</div><a class='homelink' href='http://brandonb.me/blog'>ts</a>")
-escri("\t\t\t</div>")
+escri("\t\t\t<div class='tbitem' id='longname'><a class='homelink' href='http://brandonb.me/blog'>brand</a><div class='turnoff'>0</div><a class='homelink' href='http://brandonb.me/blog'>n</a> <a class='homelink' href='http://brandonb.me/blog'>b</a><div class='turnon'>1</div><a class='homelink' href='http://brandonb.me/blog'>ts</a></div>")
 escri("\t\t\t<div class='tbitem' id='longnum'>" + num + "</div>")
 escri("\t\t\t<div class='tbitem' id='shortnum'>" + shortnum + "</div>")
 escri("\t\t</div>")
